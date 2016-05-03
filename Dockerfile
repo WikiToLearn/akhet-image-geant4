@@ -21,11 +21,12 @@ RUN apt-get update && apt-get install -y qtbase5-dev && rm -f /var/cache/apt/arc
 
 RUN wget http://geant4.cern.ch/support/source/geant4.10.01.p02.tar.gz && \
     tar zxvf geant4.10.01.p02.tar.gz && rm /geant4.10.01.p02.tar.gz && \
-    mkdir /build && cd /build && \
+    mkdir /geant4-build && cd /geant4-build && \
     cmake -DGEANT4_BUILD_MULTITHREADED=ON \
-        -DCMAKE_INSTALL_PREFIX=/opt/geant4.10.0-install \
+        -DCMAKE_INSTALL_PREFIX=/opt/geant4.10.01 \
         -DGEANT4_INSTALL_DATA=ON \
         -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON \
         /geant4.10.01.p02/ && \
-    make -j 16 && make install
-RUN echo source /opt/geant4.10.0-install/bin/geant4.sh  >> /etc/bash.bashrc
+    make -j 16 && make install && \
+    rm -rf /geant4-build && rm -rf /geant4.10.01.p02
+RUN echo source /opt/geant4.10.01/bin/geant4.sh  >> /etc/bash.bashrc
