@@ -46,7 +46,7 @@ RUN wget http://geant4.cern.ch/support/source/geant4.10.02.p01.tar.gz && \
         -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_QT=ON -DGEANT4_USE_XM=ON \
         -DGEANT4_USE_GDML=ON \
         /geant4.10.02.p01/ && \
-    make -j 16 && make install && \
+    make -j && make install && \
     mv /geant4-build/CMakeCache.txt /opt/geant4.10.02/ && \
     rm -rf /geant4-build && rm -rf /geant4.10.02.p01
 RUN echo source /opt/geant4.10.02/bin/geant4.sh  >> /etc/bash.bashrc
